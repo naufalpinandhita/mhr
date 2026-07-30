@@ -1,0 +1,26 @@
+# Environment & Config
+.env
+.env.local
+.env.*.local
+
+# Vendor & Dependencies
+/vendor/
+/node_modules/
+
+# Docker & Temporary Files
+.docker/
+*.log
+tmp/
+/tmp/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Uploaded Files & Assets
+public/uploads/
+src/uploads/
+api/uploads/
