@@ -77,6 +77,30 @@ class Review {
         return $stmt->fetchAll();
     }
 
+    public static function countByUserId(int $userId): int {
+        $pdo = Database::getInstance();
+        $stmt = $pdo->prepare('SELECT COUNT(*) FROM reviews WHERE user_id = ?');
+        $stmt->execute([$userId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    public static function getStatsByUserId(int $userId): array {
+        $pdo = Database::getInstance();
+        $stmt = $pdo->prepare('
+            SELECT 
+                COUNT(*) as total_reviews,
+                COALESCE(ROUND(AVG(rating), 1), 0) as average_rating
+            FROM reviews
+            WHERE user_id = ?
+        ');
+        $stmt->execute([$userId]);
+        $result = $stmt->fetch();
+        return [
+            'total_reviews' => (int) ($result['total_reviews'] ?? 0),
+            'average_rating' => (float) ($result['average_rating'] ?? 0),
+        ];
+    }
+
     public static function getSummaryByAnimeId(int $anilistId): array {
         $pdo = Database::getInstance();
         $stmt = $pdo->prepare('

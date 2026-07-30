@@ -93,6 +93,40 @@ class AniListService {
         return $data['Media'] ?? null;
     }
 
+    public static function getAnimeByIds(array $ids): array {
+        if (empty($ids)) {
+            return [];
+        }
+
+        $query = '
+            query ($ids: [Int]) {
+                Page (perPage: 50) {
+                    media (id_in: $ids, type: ANIME) {
+                        id
+                        title {
+                            romaji
+                            english
+                            native
+                            userPreferred
+                        }
+                        coverImage { extraLarge large medium color }
+                        bannerImage
+                    }
+                }
+            }
+        ';
+
+        $data = self::executeQuery($query, ['ids' => array_values(array_unique($ids))]);
+        $mediaList = $data['Page']['media'] ?? [];
+
+        $map = [];
+        foreach ($mediaList as $item) {
+            $map[$item['id']] = $item;
+        }
+
+        return $map;
+    }
+
     public static function getTrendingAnime(int $page = 1, int $perPage = 10): array {
         $query = '
             query ($page: Int, $perPage: Int) {

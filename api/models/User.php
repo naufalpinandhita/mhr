@@ -2,6 +2,13 @@
 require_once __DIR__ . '/../config/database.php';
 
 class User {
+    public static function findById(int $id): ?array {
+        $pdo = Database::getInstance();
+        $stmt = $pdo->prepare('SELECT id, username, email, bio, avatar, role, created_at, updated_at FROM users WHERE id = ? LIMIT 1');
+        $stmt->execute([$id]);
+        return $stmt->fetch() ?: null;
+    }
+
     public static function findByEmail(string $email): ?array {
         $pdo = Database::getInstance();
         $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ? LIMIT 1');
