@@ -7,4 +7,4 @@ unset($_SESSION['user']);
 
 flash('success', 'Berhasil Logout');
 
-redirect(BASE_URL . 'views/login.php');
+redirect(BASE_URL . 'login.php');

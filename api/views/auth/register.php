@@ -1,9 +1,3 @@
-<?php
-require_once __DIR__ . '/../../api/config/app.php';
-require_once __DIR__ . '/../../api/helpers/functions.php';
-
-require_guest();
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -17,13 +11,13 @@ require_guest();
         <h1>Daftar</h1>
 
         <?php $success = flash_get('success'); if ($success): ?>
-            <div class="alert alert-success"><?= $success ?></div>
+            <div class="alert alert-success"><?= e($success) ?></div>
         <?php endif; ?>
         <?php $error = flash_get('error'); if ($error): ?>
-            <div class="alert alert-error"><?= $error ?></div>
+            <div class="alert alert-error"><?= e($error) ?></div>
         <?php endif; ?>
 
-        <form method="POST" action="../process/auth/register.php">
+        <form method="POST" action="process/auth/register.php">
             <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
 
             <div>

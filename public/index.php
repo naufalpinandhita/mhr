@@ -28,8 +28,8 @@ $user = auth_user();
             <p><a href="process/auth/logout.php">Logout</a></p>
         <?php else: ?>
             <p>
-                <a href="views/login.php">Login</a> | 
-                <a href="views/register.php">Register</a>
+                <a href="login.php">Login</a> | 
+                <a href="register.php">Register</a>
             </p>
         <?php endif; ?>
     </div>

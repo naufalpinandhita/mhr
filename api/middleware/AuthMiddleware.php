@@ -12,7 +12,7 @@ class AuthMiddleware {
     public static function requireAuth(): void {
         if (!self::check()) {
             flash('error', 'Silakan login terlebih dahulu');
-            redirect(BASE_URL . 'views/login.php');
+            redirect(BASE_URL . 'login.php');
         }
     }
 
