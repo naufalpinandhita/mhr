@@ -1,0 +1,21 @@
+{
+  "name": "mhr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "scripts": {
+  "dev": "pnpm build --watch",
+  "build": "tailwindcss -i ./api/views/css/input.css -o ./public/css/style.css --minify"
+  }
+}
